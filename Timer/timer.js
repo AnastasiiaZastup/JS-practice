@@ -58,3 +58,52 @@ function setClock(selector, endtime) {
 }
 
 setClock(".timer", deadline);
+
+//Modal
+
+const modalApp = document.querySelectorAll("[data-modal]");
+const modalCloses = document.querySelectorAll("[modal-close]");
+const modal = document.querySelector(".modalWindow");
+
+function openModal() {
+  modal.classList.add("show");
+  modal.classList.remove("hide");
+  clearInterval(timeModal);
+}
+
+function closeModal() {
+  modal.classList.add("hide");
+  modal.classList.remove("show");
+}
+
+modalApp.forEach((button) => {
+  button.addEventListener("click", openModal);
+});
+
+modalCloses.forEach((button) => {
+  button.addEventListener("click", closeModal);
+});
+
+//Якщо натискаємо на будь-яку область, то модальне закриється.
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
+});
+
+//додамо функцію появи модалки після деякого часу на сайті
+
+const timeModal = setTimeout(openModal, 4000);
+
+//console.log(`We see: ${timeModal}`);
+
+window.addEventListener("scroll", () => {
+  if (
+    window.documentElement.pageYOffset +
+      document.documentElement.clientHeight >=
+    document.documentElement.scrollHeight - 1
+  ) {
+    openModal();
+  }
+});

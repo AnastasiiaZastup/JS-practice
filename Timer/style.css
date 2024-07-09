@@ -1,3 +1,5 @@
+/* Timer */
+
 .promotion__timer {
   width: 50%;
 }
@@ -26,4 +28,78 @@
   margin-bottom: 5px;
   font-size: 56px;
   font-weight: 700;
+}
+/* Button */
+
+.btn {
+  width: 220px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: 0.3s all;
+  outline: 0;
+}
+
+.btn_dark {
+  background-color: #303030;
+  color: #fff;
+  border: none;
+}
+
+.offer__action {
+  display: block;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+/* Modal */
+
+.modalWindow {
+  display: none;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modalWindow.show {
+  display: flex;
+}
+
+.modalWindow.hide {
+  display: none;
+}
+
+.modalActive {
+  position: relative;
+  width: 350px;
+  height: 495px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  cursor: default;
+  padding: 40px 20px;
+}
+
+.modalClose {
+  font-family: var(--font-regular);
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }

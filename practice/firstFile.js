@@ -24,3 +24,30 @@
 
 //console.log(`What we had: ${end - start}`);
 //
+
+//-------------------------------------------------------------
+//Функція-конструктор
+
+// function User(name, id) {
+//   this.name = name;
+//   this.id = id;
+//   this.human = true;
+//   this.hello = function () {
+//     console.log(`Hello ${this.name}`);
+//   };
+// }
+
+// User.prototype.exit = function (name) {
+//   console.log(`User ${this.name} leave`);
+// };
+
+// const anastasia = new User("Anastasia", 20);
+// const sofia = new User("Sofia", 22);
+
+// anastasia.hello();
+// sofia.hello();
+
+// sofia.exit();
+
+// console.log(anastasia);
+// console.log(sofia);

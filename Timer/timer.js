@@ -1,4 +1,4 @@
-const deadline = "2024-07-10";
+const deadline = "2024-08-10";
 
 function getTimeRemaining(endtime) {
   let days, hours, minutes, seconds;
@@ -106,4 +106,16 @@ window.addEventListener("scroll", () => {
   ) {
     openModal();
   }
+});
+
+//Work with box
+
+const box = document.querySelector(".box");
+
+let observer = new MutationObserver((mutationRecords) => {
+  console.log(mutationRecords);
+});
+
+observer.observe(box, {
+  childList: true,
 });

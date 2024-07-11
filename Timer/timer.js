@@ -119,3 +119,11 @@ let observer = new MutationObserver((mutationRecords) => {
 observer.observe(box, {
   childList: true,
 });
+
+//Button use with .this
+
+const btn = document.querySelector("mybtn");
+
+btn.addEventListener("click", function () {
+  this.style.backgroundColor = "red";
+});

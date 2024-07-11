@@ -32,13 +32,13 @@
 /* Button */
 
 .btn {
-  width: 220px;
-  height: 65px;
+  width: 100px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  font-size: 18px;
+  font-size: 10px;
   font-weight: 700;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);

@@ -51,3 +51,24 @@
 
 // console.log(anastasia);
 // console.log(sofia);
+
+//this = ручна привязка з call, apply, bind
+
+function sayName(surname) {
+  console.log(this);
+  console.log(this.name + surname);
+}
+
+const user = {
+  name: "Annastasia",
+};
+
+sayName.call(user, "Zastup");
+sayName.apply(user, ["Zastup"]);
+
+function count(num) {
+  return this * num;
+}
+
+const double = count.bind(2);
+console.log(double(3));

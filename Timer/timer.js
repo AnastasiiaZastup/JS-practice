@@ -11,7 +11,7 @@ function getTimeRemaining(endtime) {
     seconds = 0;
   } else {
     days = Math.floor(t / (1000 * 60 * 60 * 24));
-    hours = Math.floor(((t / 1000) * 60 * 60) % 24);
+    hours = Math.floor((t / (1000 * 60 * 60)) % 24);
     minutes = Math.floor((t / 1000 / 60) % 60);
     seconds = Math.floor((t / 1000) % 60);
   }
@@ -34,7 +34,7 @@ function getZero(num) {
 }
 
 function setClock(selector, endtime) {
-  const timer = document.querySelector(".timer");
+  const timer = document.querySelector(selector);
   const days = timer.querySelector("#days");
   const hours = timer.querySelector("#hours");
   const minutes = timer.querySelector("#minutes");
@@ -59,10 +59,9 @@ function setClock(selector, endtime) {
 
 setClock(".timer", deadline);
 
-//Modal
-
+// Modal
 const modalApp = document.querySelectorAll("[data-modal]");
-const modalCloses = document.querySelectorAll("[modal-close]");
+const modalCloses = document.querySelectorAll("[data-modal-close]");
 const modal = document.querySelector(".modalWindow");
 
 function openModal() {
@@ -84,32 +83,26 @@ modalCloses.forEach((button) => {
   button.addEventListener("click", closeModal);
 });
 
-//Якщо натискаємо на будь-яку область, то модальне закриється.
-
+// Close modal on clicking outside
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
     closeModal();
   }
 });
 
-//додамо функцію появи модалки після деякого часу на сайті
-
+// Show modal after some time
 const timeModal = setTimeout(openModal, 4000);
-
-//console.log(`We see: ${timeModal}`);
 
 window.addEventListener("scroll", () => {
   if (
-    window.documentElement.pageYOffset +
-      document.documentElement.clientHeight >=
+    window.pageYOffset + document.documentElement.clientHeight >=
     document.documentElement.scrollHeight - 1
   ) {
     openModal();
   }
 });
 
-//Work with box
-
+// Work with box
 const box = document.querySelector(".box");
 
 let observer = new MutationObserver((mutationRecords) => {
@@ -120,10 +113,38 @@ observer.observe(box, {
   childList: true,
 });
 
-//Button use with .this
-
-const btn = document.querySelector("mybtn");
+// Button use with .this
+const btn = document.querySelector(".mybtn");
 
 btn.addEventListener("click", function () {
   this.style.backgroundColor = "red";
 });
+
+// Create card with information
+class CardWithInf {
+  constructor(title, text, price, parentSelector) {
+    this.title = title;
+    this.text = text;
+    this.price = price;
+    this.parent = document.querySelector(parentSelector);
+  }
+
+  render() {
+    const element = document.createElement("div");
+    element.innerHTML = `
+          <div class="menu">
+            <h3>${this.title}</h3>
+            <div>${this.text}</div>
+            <div>${this.price}</div>
+          </div>`;
+
+    this.parent.append(element);
+  }
+}
+
+new CardWithInf(
+  "Menu",
+  "Its menu have good recipe and good food",
+  2500,
+  "body"
+).render();

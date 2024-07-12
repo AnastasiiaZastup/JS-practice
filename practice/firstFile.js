@@ -54,21 +54,65 @@
 
 //this = ручна привязка з call, apply, bind
 
-function sayName(surname) {
-  console.log(this);
-  console.log(this.name + surname);
-}
+// function sayName(surname) {
+//   console.log(this);
+//   console.log(this.name + surname);
+// }
 
-const user = {
-  name: "Annastasia",
-};
+// const user = {
+//   name: "Annastasia",
+// };
 
-sayName.call(user, "Zastup");
-sayName.apply(user, ["Zastup"]);
+// sayName.call(user, "Zastup");
+// sayName.apply(user, ["Zastup"]);
 
-function count(num) {
-  return this * num;
-}
+// function count(num) {
+//   return this * num;
+// }
 
-const double = count.bind(2);
-console.log(double(3));
+// const double = count.bind(2);
+// console.log(double(3));
+
+//class
+
+// class Rectangle {
+//   constructor(height, width) {
+//     this.height = height;
+//     this.width = width;
+//   }
+
+//   calcArea() {
+//     return this.height * this.width;
+//   }
+// }
+
+// class ColoredRegtangleWittText extends Rectangle {
+//   constructor(height, width, text, colorBg) {
+//     super(height, width); //викликає те, що в основному класі
+//     this.text = text;
+//     this.colorBg = colorBg;
+//   }
+
+//   showMyProps() {
+//     console.log(`Text: ${this.text} and color: ${this.colorBg}`);
+//   }
+// }
+
+// const square = new Rectangle(2, 10);
+// const long = new Rectangle(20, 100);
+
+// console.log(square.calcArea());
+// console.log(long.calcArea());
+
+// const div = new ColoredRegtangleWittText(25, 10, "hello", "red");
+
+// div.showMyProps();
+// console.log(div.calcArea());
+
+//rest
+
+// const log = function (...rest) {
+//   console.log(rest);
+// };
+
+// log("basic", "dddd", "ffff");

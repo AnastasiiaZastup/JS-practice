@@ -116,3 +116,20 @@
 // };
 
 // log("basic", "dddd", "ffff");
+
+// const persona = {
+//   name: "Alex",
+//   tel: "+3800000000",
+//   parent: {
+//     mom: "Sasha",
+//     dad: "Pasha",
+//   },
+// };
+
+// const clone = JSON.parse(JSON.stringify(persona));
+
+// clone.parent.mom = "Anna";
+
+// onsole.log(persona);
+
+// console.log(clone);

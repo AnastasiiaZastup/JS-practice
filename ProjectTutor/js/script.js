@@ -229,10 +229,22 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   forms.forEach((item) => {
-    postData(item);
+    bindpostData(item);
   });
 
-  function postData(form) {
+  const postData = (url, data) => {
+    const res = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: data,
+    });
+
+    return res.json();
+  };
+
+  function bindpostData(form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -296,13 +308,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 4000);
   }
 
-  // fetch("https://jsonplaceholder.typicode.com/posts", {
-  //   method: "POST",
-  //   body: JSON.stringify({ name: "Alex" }),
-  //   headers: {
-  //     "Content-type": "application/json",
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((json) => console.log(json));
+  fetch("db.json")
+    .then((data) => data.json)
+    .then((res) => console.log(res));
 });

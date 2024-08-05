@@ -191,32 +191,28 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  new MenuCard(
-    "img/vegy.jpg",
-    "vegy",
-    "Fitness Menu",
-    "The Fitness menu is a new approach to cooking: more fresh fruits and vegetables. The product of active and healthy people. It is a completely new product with optimal price and high quality!",
-    9,
-    ".menu .container"
-  ).render();
+  const getResource = async (url) => {
+    const res = await fetch(url);
 
-  new MenuCard(
-    "img/post.jpg",
-    "post",
-    "Lenten Menu",
-    "The Lenten menu is a careful selection of ingredients: no animal products at all, milk made from almonds, oats, coconut or buckwheat, the right amount of protein through tofu and imported vegetarian steaks.",
-    14,
-    ".menu .container"
-  ).render();
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
 
-  new MenuCard(
-    "img/elite.jpg",
-    "elite",
-    "Premium Menu",
-    "In the Premium menu we use not only beautiful packaging design, but also high-quality execution of dishes. Red fish, seafood, fruits - a restaurant menu without going to a restaurant!",
-    21,
-    ".menu .container"
-  ).render();
+    return await res.json();
+  };
+
+  getResource("http://localhost:3001/menu").then((data) => {
+    data.forEach(({ img, altimg, title, descr, price }) => {
+      new MenuCard(
+        img,
+        altimg,
+        title,
+        descr,
+        price,
+        ".menu .container"
+      ).render();
+    });
+  });
 
   //Forms
 
@@ -232,8 +228,8 @@ window.addEventListener("DOMContentLoaded", function () {
     bindpostData(item);
   });
 
-  const postData = (url, data) => {
-    const res = fetch(url, {
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -241,7 +237,7 @@ window.addEventListener("DOMContentLoaded", function () {
       body: data,
     });
 
-    return res.json();
+    return await res.json();
   };
 
   function bindpostData(form) {
@@ -258,19 +254,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const formData = new FormData(form);
 
-      const object = {};
-      formData.forEach(function (value, key) {
-        object[key] = value;
-      });
+      const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-      fetch("server.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(object),
-      })
-        .then((response) => response.text())
+      postData("http://localhost:3001/requests", json)
         .then((data) => {
           console.log(data);
           showThanksModal(message.success);
@@ -308,7 +294,53 @@ window.addEventListener("DOMContentLoaded", function () {
     }, 4000);
   }
 
-  fetch("db.json")
-    .then((data) => data.json)
-    .then((res) => console.log(res));
+  //Slider
+
+  const slides = document.querySelectorAll(".offer__slide");
+  const prev = document.querySelector(".offer__slider-prev");
+  const next = document.querySelector(".offer__slider-next");
+  total = this.document.querySelector("#total");
+  current = this.document.querySelector("#current");
+
+  let slideindex = 1;
+
+  showSlides(slideindex);
+
+  if (slides.length < 10) {
+    total.textContent = `0${slides.length}`;
+  } else {
+    total.textContent = slides.length;
+  }
+
+  function showSlides(n) {
+    if (n > slides.length) {
+      slideindex = 1;
+    }
+
+    if (n < 1) {
+      slideindex = slides.length;
+    }
+
+    slides.forEach((item) => (item.style.display = "none"));
+
+    slides[slideindex - 1].style.display = "block";
+
+    if (slides.length < 10) {
+      current.textContent = `0${slideindex}`;
+    } else {
+      current.textContent = slideindex;
+    }
+  }
+
+  function plusSlides(n) {
+    showSlides((slideindex += n));
+  }
+
+  prev.addEventListener("click", () => {
+    plusSlides(-1);
+  });
+
+  next.addEventListener("click", () => {
+    plusSlides(1);
+  });
 });

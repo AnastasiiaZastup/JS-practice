@@ -133,3 +133,7 @@
 // onsole.log(persona);
 
 // console.log(clone);
+
+//-----------------------------------------------------------
+// new RegExp('pattern', 'flags');
+// /pattern/f

@@ -1,6 +1,8 @@
 window.addEventListener("DOMContentLoaded", function () {
   // Tabs http://localhost:8888/ProjectTutor/
 
+  // json-server --watch db.json --port 3001
+
   let tabs = document.querySelectorAll(".tabheader__item"),
     tabsContent = document.querySelectorAll(".tabcontent"),
     tabsParent = document.querySelector(".tabheader__items");

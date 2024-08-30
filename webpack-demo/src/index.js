@@ -11,11 +11,11 @@ import forms from "./js/modules/forms";
 import slider from "./js/modules/slider";
 
 window.addEventListener("DOMContentLoaded", function () {
+  timer();
   tabs();
   modal();
   calc();
   cards();
   forms();
   slider();
-  timer();
 });

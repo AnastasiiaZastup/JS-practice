@@ -4,5 +4,5 @@ module.exports = {
     filename: "main.js",
     path: __dirname + "/dist",
   },
-  mode: "development", // або 'production'
+  mode: "production", // або 'production'
 };

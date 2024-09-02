@@ -173,3 +173,61 @@
 // alex.say();
 
 //------------------------------------------------------
+
+// console.log(1);
+
+// setTimeout(() => {
+//   console.log("timeout_1");
+// }, 4000);
+
+// setTimeout(() => {
+//   console.log("timeout_2");
+// }, 4000);
+
+// console.log(1);
+
+// setTimeout(() => console.log("timeout"));
+
+// Promise.resolve().then(() => console.log("promise"));
+
+// console.log("code");
+
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("foo");
+//   }, 1000);
+//   setTimeout(() => {
+//     reject("bar");
+//   }, 900);
+// });
+
+// promise
+//   .then((value) => {
+//     console.log(value);
+//   })
+//   .catch((e) => console.log(e));
+
+// let c = 4;
+// function addX(x) {
+//   return function (n) {
+//     return n + x;
+//   };
+// }
+
+// const addThree = addX(3);
+
+// let d = addThree(c);
+// console.log(d);
+// let res = addThree(c);
+
+// console.log(res);
+function getSum(a, b) {
+  function sum() {
+    console.log(this.a);
+    return a + b;
+  }
+
+  console.log(sum());
+}
+
+getSum(4, 5);
